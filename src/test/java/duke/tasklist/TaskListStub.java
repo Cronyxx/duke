@@ -39,4 +39,9 @@ public class TaskListStub implements MyList {
     public Task removeTask(int index) {
         return new TodoTask("Testing remove task");
     }
+
+    @Override
+    public MyList findTasks(String word) {
+        return new TaskList();
+    }
 }

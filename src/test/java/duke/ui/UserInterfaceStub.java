@@ -3,6 +3,7 @@ package duke.ui;
 import duke.constant.Consts;
 import duke.task.Task;
 import duke.tasklist.MyList;
+import duke.tasklist.TaskList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,40 +14,50 @@ public class UserInterfaceStub implements DukeUserInterface {
     public UserInterfaceStub() {
     }
 
+    @Override
     public String readCommand() {
         return "Testing readCommand";
     }
 
     //closes scanner
-    public void exit() {}
-
-    //prints the logo for the chat bot
-    private void printLogo() {}
-
-    //prints the indentation used for the output
-    private void printIndentation() {}
+    @Override
+    public void exit() {
+    }
 
     //prints line with indentation in front
+    @Override
     public void printLine() {
     }
 
-    //prints one section(bounded by lines)
-    public void printSection(String msg) {}
+    @Override
+    public void printIntro() {
+    }
 
-    //prints one section(bounded by lines) with multiple lines of messages
-    public void printSection(String[] msgArray) {}
+    @Override
+    public void printExitMsg() {
+    }
 
-    public void printIntro() {}
+    @Override
+    public void printAddTaskMsg(Task task, MyList taskList) {
+    }
 
-    public void printExitMsg() {}
+    @Override
+    public void printList(MyList myList) {
+    }
 
-    public void printAddTaskMsg(Task task, MyList taskList) {}
+    @Override
+    public void printDoneMsg(Task task) {
+    }
 
-    public void printList(MyList myList) {}
+    @Override
+    public void printException(String msg) {
+    }
 
-    public void printDoneMsg(Task task) {}
+    @Override
+    public void printDeleteMsg(Task task, MyList taskList) {
+    }
 
-    public void printException(String msg) {}
-
-    public void printDeleteMsg(Task task, MyList taskList) {}
+    @Override
+    public void printFindList(MyList resultList) {
+    }
 }

@@ -1,7 +1,7 @@
 package duke.storage;
 
 import duke.exception.DukeCorruptedDataException;
-import duke.exception.MissingFileExeception;
+import duke.exception.DukeMissingFileException;
 import duke.exception.DukeWrongDateFormatException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
@@ -28,7 +28,7 @@ public class StorageStub implements DukeStorage {
     public void updateList(MyList taskList) throws IOException {
     }
 
-    public MyList loadList() throws MissingFileExeception, DukeCorruptedDataException, DukeWrongDateFormatException {
+    public MyList loadList() throws DukeMissingFileException, DukeCorruptedDataException, DukeWrongDateFormatException {
         MyList taskList = new TaskList();
         File file = new File(directory + filename);
         try {
@@ -39,7 +39,7 @@ public class StorageStub implements DukeStorage {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            throw new MissingFileExeception();
+            throw new DukeMissingFileException();
         }
         return taskList;
     }
