@@ -1,16 +1,16 @@
 package duke.exception;
 
 /**
- * Represents the exception thrown when the input is not an Integer.
+ * Represents the exception thrown when the input of datetime is missing.
  */
-public class IntFormatException extends DukeException {
+public class DukeMissingDateTimeException extends DukeException {
     private String type;
 
     /**
      * Initialises the exception that specifies the type of task.
      * @param type Type of Task.
      */
-    public IntFormatException(String type) {
+    public DukeMissingDateTimeException(String type) {
         this.type = type;
     }
 
@@ -20,6 +20,6 @@ public class IntFormatException extends DukeException {
      */
     @Override
     public String toString() {
-        return String.format("%s Please add an integer after %s!", super.toString(), type);
+        return String.format("%s Datetime for %s must be specified!", super.toString(), type);
     }
 }

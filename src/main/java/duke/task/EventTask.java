@@ -1,12 +1,12 @@
 package duke.task;
 
 import duke.constant.Consts;
-import duke.exception.WrongDateFormatException;
+import duke.exception.DukeWrongDateFormatException;
 
 import java.text.ParseException;
 
 /**
- * Represents an event task in the application extends the Task class.
+ * Represents an event task in the application that extends the Task class.
  */
 public class EventTask extends Task {
 
@@ -15,14 +15,14 @@ public class EventTask extends Task {
      *
      * @param description Description of the task.
      * @param startDate String of datetime of the event task.
-     * @throws WrongDateFormatException Thrown when the String startDate is of the wrong format.
+     * @throws DukeWrongDateFormatException Thrown when the String startDate is of the wrong format.
      */
-    public EventTask(String description, String startDate) throws WrongDateFormatException {
+    public EventTask(String description, String startDate) throws DukeWrongDateFormatException {
         super(description);
         try {
             this.dateTime = Consts.DATE_TIME_FORMATTER.parse(startDate);
         } catch (ParseException e) {
-            throw new WrongDateFormatException();
+            throw new DukeWrongDateFormatException();
         }
         this.type = "E";
     }
@@ -34,14 +34,14 @@ public class EventTask extends Task {
      * @param description Description of the task.
      * @param startDate String of datetime of the event task.
      * @param isDone Boolean representing the completion state of the task.
-     * @throws WrongDateFormatException Thrown when the String startDate is of the wrong format.
+     * @throws DukeWrongDateFormatException Thrown when the String startDate is of the wrong format.
      */
-    public EventTask(String description, String startDate, boolean isDone) throws WrongDateFormatException {
+    public EventTask(String description, String startDate, boolean isDone) throws DukeWrongDateFormatException {
         super(description, isDone);
         try {
             this.dateTime = Consts.DATE_TIME_FORMATTER.parse(startDate);
         } catch (ParseException e) {
-            throw new WrongDateFormatException();
+            throw new DukeWrongDateFormatException();
         }
         this.type = "E";
     }

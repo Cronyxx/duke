@@ -22,7 +22,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Returns true when a exit command is called. Else, returns false.
+     * Returns true when an exit command is called. Else, returns false.
      *
      * @return Boolean which states whether to exit the application.
      */

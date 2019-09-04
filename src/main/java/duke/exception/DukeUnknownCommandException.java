@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Represents the exception thrown when an invalid command is entered.
  */
-public class UnknownCommandException extends DukeException {
+public class DukeUnknownCommandException extends DukeException {
 
     /**
      * Specifies the message to be printed.

@@ -22,6 +22,7 @@ public class TaskList implements MyList {
 
     /**
      * Adds a task to the task list.
+     *
      * @param task Task to be added.
      */
     @Override
@@ -31,6 +32,7 @@ public class TaskList implements MyList {
 
     /**
      * Returns a List of type Task.
+     *
      * @return List of tasks.
      */
     @Override
@@ -40,6 +42,7 @@ public class TaskList implements MyList {
 
     /**
      * Returns the size of the list.
+     *
      * @return Size of list.
      */
     @Override
@@ -49,6 +52,7 @@ public class TaskList implements MyList {
 
     /**
      * Returns a task based on the index specified.
+     *
      * @param index Index of task tagged in the list.
      * @return Task tagged with the index.
      */
@@ -59,6 +63,7 @@ public class TaskList implements MyList {
 
     /**
      * Removes a task from the list based on the index specified.
+     *
      * @param index Index of task tagged in the list.
      * @return Task that was removed.
      */
@@ -67,6 +72,14 @@ public class TaskList implements MyList {
         return list.remove(index - 1);
     }
 
+    /**
+     * Returns a list of tasks in the taskList whose description contain the String word
+     * that is passed the method. Returns an empty list if none of the tasks' description
+     * contains the word.
+     *
+     * @param word String to find within the tasks' description
+     * @return TaskList of tasks whose description contains word.
+     */
     public TaskList findTasks(String word) {
         TaskList taskList = new TaskList();
         for (Task task : list) {

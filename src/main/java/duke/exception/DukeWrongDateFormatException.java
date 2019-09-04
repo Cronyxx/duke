@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Represents the exception thrown when the input format for datetime is invalid.
  */
-public class WrongDateFormatException extends DukeException {
+public class DukeWrongDateFormatException extends DukeException {
 
     /**
      * Specifies the message to be printed.

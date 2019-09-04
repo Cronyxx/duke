@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Represents the exception thrown when the data within the file does not fit the required format.
  */
-public class CorruptedDataException extends DukeException {
+public class DukeCorruptedDataException extends DukeException {
 
     /**
      * Specifies the message to be printed.

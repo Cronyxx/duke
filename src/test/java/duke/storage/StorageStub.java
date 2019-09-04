@@ -1,8 +1,8 @@
 package duke.storage;
 
-import duke.exception.CorruptedDataException;
+import duke.exception.DukeCorruptedDataException;
 import duke.exception.MissingFileExeception;
-import duke.exception.WrongDateFormatException;
+import duke.exception.DukeWrongDateFormatException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -12,7 +12,6 @@ import duke.tasklist.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -29,7 +28,7 @@ public class StorageStub implements DukeStorage {
     public void updateList(MyList taskList) throws IOException {
     }
 
-    public MyList loadList() throws MissingFileExeception, CorruptedDataException, WrongDateFormatException {
+    public MyList loadList() throws MissingFileExeception, DukeCorruptedDataException, DukeWrongDateFormatException {
         MyList taskList = new TaskList();
         File file = new File(directory + filename);
         try {
@@ -45,7 +44,7 @@ public class StorageStub implements DukeStorage {
         return taskList;
     }
 
-    private Task dataParser(String data) throws CorruptedDataException, WrongDateFormatException {
+    private Task dataParser(String data) throws DukeCorruptedDataException, DukeWrongDateFormatException {
         String[] arguments = data.split(" \\| ");
         boolean isDone;
         isDone = arguments[1].equals("1");
@@ -58,7 +57,7 @@ public class StorageStub implements DukeStorage {
         case "E":
             return new EventTask((arguments[2]), arguments[3], isDone);
         default:
-            throw new CorruptedDataException();
+            throw new DukeCorruptedDataException();
         }
     }
 

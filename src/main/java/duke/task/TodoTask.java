@@ -3,8 +3,8 @@ package duke.task;
 import java.util.Date;
 
 /**
- * Represents a todo task in the application extends the Task class. The dateTime field in
- * this class is set to the default Date object as it is not used.
+ * Represents a todo task in the application that extends the Task class.
+ * The dateTime field in this class is set to the default Date object as it is not used.
  */
 public class TodoTask extends Task {
 

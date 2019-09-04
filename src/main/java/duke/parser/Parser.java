@@ -25,12 +25,13 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "done":
+            //Fallthrough
         case "delete":
             int num;
             try {
                 num = Integer.parseInt(arguments[1]);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                throw new IntFormatException(arguments[0]);
+                throw new DukeIntFormatException(arguments[0]);
             }
             if (arguments[0].equals("done")) {
                 return new DoneCommand(num);
@@ -38,10 +39,12 @@ public class Parser {
                 return new DeleteCommand(num);
             }
         case "deadline":
+            //Fallthrough
         case "event":
+            //Fallthrough
         case "todo":
             if (arguments.length == 1) {
-                throw new EmptyDescriptionException(arguments[0]);
+                throw new DukeEmptyDescriptionException(arguments[0]);
             }
 
             int index = -1;
@@ -49,12 +52,12 @@ public class Parser {
             if (arguments[0].equals("deadline")) {
                 index = findIndexByToken(arguments, "/by");
                 if (index == -1) {
-                    throw new MissingDateTimeException(arguments[0]);
+                    throw new DukeMissingDateTimeException(arguments[0]);
                 }
             } else if (arguments[0].equals("event")) {
                 index = findIndexByToken(arguments, "/at");
                 if (index == -1) {
-                    throw new MissingDateTimeException(arguments[0]);
+                    throw new DukeMissingDateTimeException(arguments[0]);
                 }
             }
 
@@ -68,11 +71,11 @@ public class Parser {
             }
         case "find":
             if (arguments.length == 1) {
-                throw new MissingKeywordException();
+                throw new DukeMissingKeywordException();
             }
             return new FindCommand(arguments[1]);
         default:
-            throw new UnknownCommandException();
+            throw new DukeUnknownCommandException();
         }
     }
 

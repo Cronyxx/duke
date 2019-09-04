@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Represents the exception thrown when updating the file fails.
  */
-public class FileSaveException extends DukeException {
+public class DukeFileSaveException extends DukeException {
 
     /**
      * Specifies the message to be printed.

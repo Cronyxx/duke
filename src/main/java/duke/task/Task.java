@@ -3,7 +3,7 @@ package duke.task;
 import java.util.Date;
 
 /**
- * Represents a task in the application. A task have four protected fields, the description
+ * Represents a task in the application. A task has four protected fields, the description
  * of the task, the state of completion of the task, the type of the task and the date time
  * information of the task. The Task class supports the getter methods to the four fields,
  * as well as getting the icon (tick and cross) which corresponds to the isDone field. The

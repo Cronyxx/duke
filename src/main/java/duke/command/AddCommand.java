@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.exception.FileSaveException;
-import duke.exception.WrongDateFormatException;
+import duke.exception.DukeFileSaveException;
+import duke.exception.DukeWrongDateFormatException;
 import duke.storage.DukeStorage;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     private String dateTime;
 
     /**
-     * Initialises the a command which contains the task to be added.
+     * Initialises a command which contains the task to be added.
      *
      * @param type Type of Task.
      * @param description Description of Task.
@@ -42,13 +42,13 @@ public class AddCommand extends Command {
      * @param taskList The main task list of the application.
      * @param ui The main user interface of the application.
      * @param storage The main storage of the application.
-     * @throws FileSaveException Thrown when the new task cannot be added to the file.
-     * @throws WrongDateFormatException Thrown when the user enters the wrong format for the
+     * @throws DukeFileSaveException Thrown when the new task cannot be added to the file.
+     * @throws DukeWrongDateFormatException Thrown when the user enters the wrong format for the
      * date and time of the task.
      */
     @Override
-    public void execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) throws FileSaveException,
-            WrongDateFormatException {
+    public void execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) throws DukeFileSaveException,
+            DukeWrongDateFormatException {
         Task task;
         if (type.equals("todo")) {
             task = new TodoTask(description);
@@ -57,11 +57,13 @@ public class AddCommand extends Command {
         } else {
             task = new EventTask(description, dateTime);
         }
+
         taskList.add(task);
+
         try {
             storage.updateList(taskList);
         } catch (IOException e) {
-            throw new FileSaveException();
+            throw new DukeFileSaveException();
         }
         ui.printAddTaskMsg(task, taskList);
     }

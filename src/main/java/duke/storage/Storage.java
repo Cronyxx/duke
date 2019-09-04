@@ -1,8 +1,8 @@
 package duke.storage;
 
-import duke.exception.CorruptedDataException;
-import duke.exception.MissingFileException;
-import duke.exception.WrongDateFormatException;
+import duke.exception.DukeCorruptedDataException;
+import duke.exception.DukeMissingFileException;
+import duke.exception.DukeWrongDateFormatException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -61,12 +61,12 @@ public class Storage implements DukeStorage {
      * that would be returned.
      *
      * @return A list from the data loaded from the file.
-     * @throws MissingFileException Thrown when the file does not exist.
-     * @throws CorruptedDataException Thrown when the data of the file is corrupted.
-     * @throws WrongDateFormatException Thrown when the datetime Format is wrong.
+     * @throws DukeMissingFileException Thrown when the file does not exist.
+     * @throws DukeCorruptedDataException Thrown when the data of the file is corrupted.
+     * @throws DukeWrongDateFormatException Thrown when the datetime Format is wrong.
      */
     @Override
-    public MyList loadList() throws MissingFileException, CorruptedDataException, WrongDateFormatException {
+    public MyList loadList() throws DukeMissingFileException, DukeCorruptedDataException, DukeWrongDateFormatException {
         MyList taskList = new TaskList();
         File file = new File(directory + filename);
         try {
@@ -77,12 +77,12 @@ public class Storage implements DukeStorage {
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            throw new MissingFileException();
+            throw new DukeMissingFileException();
         }
         return taskList;
     }
 
-    private Task dataParser(String data) throws CorruptedDataException, WrongDateFormatException {
+    private Task dataParser(String data) throws DukeCorruptedDataException, DukeWrongDateFormatException {
         String[] arguments = data.split(" \\| ");
         boolean isDone;
         isDone = arguments[1].equals("1");
@@ -95,7 +95,7 @@ public class Storage implements DukeStorage {
         case "E":
             return new EventTask((arguments[2]), arguments[3], isDone);
         default:
-            throw new CorruptedDataException();
+            throw new DukeCorruptedDataException();
         }
     }
 

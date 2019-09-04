@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * Represents the exception thrown when the file does not exist.
  */
-public class MissingFileException extends DukeException {
+public class DukeMissingFileException extends DukeException {
 
     /**
      * Specifies the message to be printed.

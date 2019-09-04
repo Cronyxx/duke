@@ -98,6 +98,7 @@ public class UserInterface implements DukeUserInterface {
 
     /**
      * Prints a message when a task is added.
+     *
      * @param task Task that was added.
      * @param taskList Task List where the Task is stored.
      */
@@ -127,6 +128,11 @@ public class UserInterface implements DukeUserInterface {
         printSection(array);
     }
 
+    /**
+     * Prints out the list of tasks that matches the String word from the Find command.
+     *
+     * @param myList MyList of tasks which contains the String word from the Find command.
+     */
     public void printFindList(MyList myList) {
         List<Task> list = myList.getList();
         int listNum = 1;
@@ -142,6 +148,7 @@ public class UserInterface implements DukeUserInterface {
 
     /**
      * Prints out a message when a task is marked as done.
+     *
      * @param task Task that was marked as done.
      */
     public void printDoneMsg(Task task) {

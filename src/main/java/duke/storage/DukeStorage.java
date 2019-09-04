@@ -1,8 +1,8 @@
 package duke.storage;
 
-import duke.exception.CorruptedDataException;
-import duke.exception.MissingFileException;
-import duke.exception.WrongDateFormatException;
+import duke.exception.DukeCorruptedDataException;
+import duke.exception.DukeMissingFileException;
+import duke.exception.DukeWrongDateFormatException;
 import duke.tasklist.MyList;
 
 import java.io.IOException;
@@ -26,9 +26,9 @@ public interface DukeStorage {
      * that would be returned.
      *
      * @return A list from the data loaded from the file.
-     * @throws MissingFileException Thrown when the file does not exist.
-     * @throws CorruptedDataException Thrown when the data of the file is corrupted.
-     * @throws WrongDateFormatException Thrown when the datetime Format is wrong.
+     * @throws DukeMissingFileException Thrown when the file does not exist.
+     * @throws DukeCorruptedDataException Thrown when the data of the file is corrupted.
+     * @throws DukeWrongDateFormatException Thrown when the datetime Format is wrong.
      */
-    public MyList loadList() throws MissingFileException, CorruptedDataException, WrongDateFormatException;
+    public MyList loadList() throws DukeMissingFileException, DukeCorruptedDataException, DukeWrongDateFormatException;
 }

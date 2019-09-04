@@ -4,7 +4,7 @@ package duke.exception;
  * Represents the exception thrown when the input index of the task is out of bounds of the
  * task list.
  */
-public class TaskNotPresentException extends DukeException {
+public class DukeTaskNotPresentException extends DukeException {
 
     /**
      * Specifies the message to be printed.

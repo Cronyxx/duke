@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.exception.FileSaveException;
-import duke.exception.TaskNotPresentException;
+import duke.exception.DukeFileSaveException;
+import duke.exception.DukeTaskNotPresentException;
 import duke.storage.DukeStorage;
 import duke.task.Task;
 import duke.tasklist.MyList;
@@ -17,7 +17,7 @@ public class DoneCommand extends Command {
     private int taskNum;
 
     /**
-     * Initialises the a command which contains the task to be mark as done.
+     * Initialises a command which contains the task to be mark as done.
      *
      * @param taskNum The number of the task specified by the task list.
      */
@@ -31,21 +31,21 @@ public class DoneCommand extends Command {
      * @param taskList The main task list of the application.
      * @param ui The main user interface of the application.
      * @param storage The main storage of the application.
-     * @throws TaskNotPresentException Thrown when the index of the task is out of bounds.
-     * @throws FileSaveException Thrown when the file update fails.
+     * @throws DukeTaskNotPresentException Thrown when the index of the task is out of bounds.
+     * @throws DukeFileSaveException Thrown when the file update fails.
      */
     @Override
-    public void execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) throws TaskNotPresentException,
-            FileSaveException {
+    public void execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) throws DukeTaskNotPresentException,
+            DukeFileSaveException {
         if (taskNum < 1 || taskNum > taskList.getNumTasks()) {
-            throw new TaskNotPresentException();
+            throw new DukeTaskNotPresentException();
         }
         Task task = taskList.getTask(taskNum);
         task.markAsDone();
         try {
             storage.updateList(taskList);
         } catch (IOException e) {
-            throw new FileSaveException();
+            throw new DukeFileSaveException();
         }
         ui.printDoneMsg(task);
     }
