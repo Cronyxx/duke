@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) {
-        return ui.printExitMsg();
+        return ui.getExitMsg();
     }
 
     /**

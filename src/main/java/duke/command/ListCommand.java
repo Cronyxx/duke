@@ -18,6 +18,6 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) {
-        return ui.printList(taskList);
+        return ui.getList(taskList);
     }
 }

@@ -14,7 +14,7 @@ public class UserInterface implements DukeUserInterface {
     /**
      * Prints the introduction of the application.
      */
-    public String printIntro() {
+    public String getIntro() {
         return "Hello! I'm Duke!\n"
                 + "What can I do for you?";
     }
@@ -22,7 +22,7 @@ public class UserInterface implements DukeUserInterface {
     /**
      * Prints the exit message.
      */
-    public String printExitMsg() {
+    public String getExitMsg() {
         return "Bye. Hope to see you again soon!";
     }
 
@@ -33,7 +33,7 @@ public class UserInterface implements DukeUserInterface {
      * @param taskList Task List where the Task is stored.
      * @return String which represents the output text.
      */
-    public String printAddTaskMsg(Task task, MyList taskList) {
+    public String getAddTaskMsg(Task task, MyList taskList) {
         return String.format("Got it. I've added this task: \n%s\nNow you have %d %s in the list.", task,
                 taskList.getNumTasks(), taskList.getNumTasks() == 1 ? "task" : "tasks");
     }
@@ -44,7 +44,7 @@ public class UserInterface implements DukeUserInterface {
      * @param myList List of tasks stored in the application.
      * @return String which represents the output text.
      */
-    public String printList(MyList myList) {
+    public String getList(MyList myList) {
         StringBuilder sb = new StringBuilder();
         List<Task> list = myList.getList();
         int listNum = 1;
@@ -64,7 +64,7 @@ public class UserInterface implements DukeUserInterface {
      * @param myList MyList of tasks which contains the String word from the Find command.
      * @return String which represents the output text.
      */
-    public String printFindList(MyList myList) {
+    public String getFindList(MyList myList) {
         StringBuilder sb = new StringBuilder();
         List<Task> list = myList.getList();
         int listNum = 1;
@@ -84,7 +84,7 @@ public class UserInterface implements DukeUserInterface {
      * @param task Task that was marked as done.
      * @return String which represents the output text.
      */
-    public String printDoneMsg(Task task) {
+    public String getDoneMsg(Task task) {
         return String.format("Nice! I've marked this task as done\n%s", task);
     }
 
@@ -94,7 +94,7 @@ public class UserInterface implements DukeUserInterface {
      * @param msg Message of the exception.
      * @return String which represents the output text.
      */
-    public String printException(String msg) {
+    public String getException(String msg) {
         return msg;
     }
 
@@ -105,7 +105,7 @@ public class UserInterface implements DukeUserInterface {
      * @param taskList Task list that the Task was removed from.
      * @return String which represents the output text.
      */
-    public String printDeleteMsg(Task task, MyList taskList) {
+    public String getDeleteMsg(Task task, MyList taskList) {
         return String.format("Noted. I've removed this task:\n%s\nNow you have %d %s in the list.",
                 task, taskList.getNumTasks(), taskList.getNumTasks() == 1 ? "task" : "tasks");
     }

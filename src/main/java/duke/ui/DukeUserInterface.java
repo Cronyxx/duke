@@ -12,45 +12,45 @@ public interface DukeUserInterface {
     /**
      * Prints the introduction of the application.
      */
-    public String printIntro();
+    public String getIntro();
 
     /**
      * Prints the exit message.
      */
-    public String printExitMsg();
+    public String getExitMsg();
 
     /**
      * Prints a message when a task is added.
      * @param task Task that was added.
      * @param taskList Task List where the Task is stored.
      */
-    public String printAddTaskMsg(Task task, MyList taskList);
+    public String getAddTaskMsg(Task task, MyList taskList);
 
     /**
      * Prints the list of tasks.
      *
      * @param myList List of tasks stored in the application.
      */
-    public String printList(MyList myList);
+    public String getList(MyList myList);
 
     /**
      * Prints out a message when a task is marked as done.
      * @param task Task that was marked as done.
      */
-    public String printDoneMsg(Task task);
+    public String getDoneMsg(Task task);
 
     /**
      * Prints out the exception.
      * @param msg Message of the exception.
      */
-    public String printException(String msg);
+    public String getException(String msg);
 
     /**
      * Prints out the message when a task is deleted.
      * @param task Task that was deleted.
      * @param taskList Task list that the Task was removed from.
      */
-    public String printDeleteMsg(Task task, MyList taskList);
+    public String getDeleteMsg(Task task, MyList taskList);
 
-    public String printFindList(MyList resultList);
+    public String getFindList(MyList resultList);
 }

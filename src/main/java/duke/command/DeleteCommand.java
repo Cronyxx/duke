@@ -46,6 +46,6 @@ public class DeleteCommand extends Command {
         } catch (IOException e) {
             throw new DukeFileSaveException();
         }
-        return ui.printDeleteMsg(task, taskList);
+        return ui.getDeleteMsg(task, taskList);
     }
 }

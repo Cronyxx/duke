@@ -15,7 +15,6 @@ import duke.exception.DukeMissingDateTimeException;
 import duke.exception.DukeMissingKeywordException;
 import duke.exception.DukeUnknownCommandException;
 
-
 /**
  * Represents a class that takes in inputs and translates them into different commands.
  */
@@ -34,63 +33,91 @@ public class Parser {
 
         switch (arguments[0]) {
         case "bye":
-            return new ExitCommand();
+            return handleExitCase();
         case "list":
-            return new ListCommand();
+            return handleListCase();
         case "done":
             //Fallthrough
         case "delete":
-            int num;
-            try {
-                num = Integer.parseInt(arguments[1]);
-            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                throw new DukeIntFormatException(arguments[0]);
-            }
-            if (arguments[0].equals("done")) {
-                return new DoneCommand(num);
-            } else {
-                return new DeleteCommand(num);
-            }
+            int num = parseInteger(arguments[0], arguments[1]);
+            return handleDoneAndDeleteCase(arguments[0], num);
         case "deadline":
             //Fallthrough
         case "event":
             //Fallthrough
         case "todo":
-            if (arguments.length == 1) {
-                throw new DukeEmptyDescriptionException(arguments[0]);
-            }
-
-            int index = -1;
-
-            if (arguments[0].equals("deadline")) {
-                index = findIndexByToken(arguments, "/by");
-                if (index == -1) {
-                    throw new DukeMissingDateTimeException(arguments[0]);
-                }
-            } else if (arguments[0].equals("event")) {
-                index = findIndexByToken(arguments, "/at");
-                if (index == -1) {
-                    throw new DukeMissingDateTimeException(arguments[0]);
-                }
-            }
-
-            if (arguments[0].equals("todo")) {
-                String description = parseArguments(arguments, 1, arguments.length);
-                return new AddCommand(arguments[0], description, "00/00/0000 0000");
-            } else {
-                String description = parseArguments(arguments, 1, index);
-                String dateTime = parseArguments(arguments, index + 1, arguments.length);
-                return new AddCommand(arguments[0], description, dateTime);
-            }
+            return handleAddTaskCommands(arguments);
         case "find":
-            if (arguments.length == 1) {
-                throw new DukeMissingKeywordException();
-            }
-            return new FindCommand(arguments[1]);
+            return handleFindCommand(arguments.length, arguments[1]);
         default:
             throw new DukeUnknownCommandException();
         }
     }
+
+    private static int parseInteger(String command, String input) throws DukeIntFormatException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new DukeIntFormatException(command);
+        }
+    }
+
+    private static Command handleExitCase() {
+        return new ExitCommand();
+    }
+
+    private static Command handleListCase() {
+        return new ListCommand();
+    }
+
+    private static Command handleDoneAndDeleteCase(String command, int index) {
+        if (command.equals("done")) {
+            return new DoneCommand(index);
+        } else if (command.equals("delete")) {
+            return new DeleteCommand(index);
+        } else {
+            assert false : " done and delete command not found";
+            return null;
+        }
+    }
+
+    private static Command handleAddTaskCommands(String[] arguments) throws DukeEmptyDescriptionException,
+            DukeMissingDateTimeException {
+        if (arguments.length == 1) {
+            throw new DukeEmptyDescriptionException(arguments[0]);
+        }
+
+        int index = -1;
+
+        if (arguments[0].equals("deadline")) {
+            index = findIndexByToken(arguments, "/by");
+            if (index == -1) {
+                throw new DukeMissingDateTimeException(arguments[0]);
+            }
+        } else if (arguments[0].equals("event")) {
+            index = findIndexByToken(arguments, "/at");
+            if (index == -1) {
+                throw new DukeMissingDateTimeException(arguments[0]);
+            }
+        }
+
+        if (arguments[0].equals("todo")) {
+            String description = parseArguments(arguments, 1, arguments.length);
+            return new AddCommand(arguments[0], description, "00/00/0000 0000");
+        } else {
+            String description = parseArguments(arguments, 1, index);
+            String dateTime = parseArguments(arguments, index + 1, arguments.length);
+            return new AddCommand(arguments[0], description, dateTime);
+        }
+    }
+
+    private static Command handleFindCommand(int lengthOfInput, String wordToFind) throws DukeMissingKeywordException {
+        if (lengthOfInput == 1) {
+            throw new DukeMissingKeywordException();
+        }
+        return new FindCommand(wordToFind);
+    }
+
 
     //returns index of token if found, else returns -1
     //stops at first occurrence of token

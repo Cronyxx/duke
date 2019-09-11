@@ -32,6 +32,6 @@ public class FindCommand extends Command {
      */
     public String execute(MyList taskList, DukeUserInterface ui, DukeStorage storage) {
         MyList resultList = taskList.findTasks(word);
-        return ui.printFindList(resultList);
+        return ui.getFindList(resultList);
     }
 }

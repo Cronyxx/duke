@@ -47,6 +47,6 @@ public class DoneCommand extends Command {
         } catch (IOException e) {
             throw new DukeFileSaveException();
         }
-        return ui.printDoneMsg(task);
+        return ui.getDoneMsg(task);
     }
 }

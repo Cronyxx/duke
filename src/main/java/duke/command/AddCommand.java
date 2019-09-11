@@ -64,6 +64,6 @@ public class AddCommand extends Command {
         } catch (IOException e) {
             throw new DukeFileSaveException();
         }
-        return ui.printAddTaskMsg(task, taskList);
+        return ui.getAddTaskMsg(task, taskList);
     }
 }
