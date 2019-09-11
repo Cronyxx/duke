@@ -46,16 +46,22 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+
         String input = userInput.getText();
         String response = duke.getResponse(input);
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
         if (input.equals("bye")) {
             Platform.exit();
             System.exit(0);
         }
+
+        assert !input.equals("bye") : " Application should have exited";
+
         userInput.clear();
     }
 }

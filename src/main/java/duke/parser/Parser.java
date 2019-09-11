@@ -82,6 +82,10 @@ public class Parser {
     //returns index of token if found, else returns -1
     //stops at first occurrence of token
     private static int findIndexByToken(String[] array, String token) {
+
+        assert array != null : " String array is null";
+        assert token != null : " Token is null";
+
         int index = -1;
         for (int i = 1; i < array.length; i++) {
             if (array[i].equals(token)) {
@@ -89,11 +93,17 @@ public class Parser {
                 break;
             }
         }
+
         return index;
     }
 
     // Combines words into a sentence
     private static String parseArguments(String[] array, int start, int end) {
+
+        assert array != null : " String array cannot be null";
+        assert start >= 0 : " Start cannot be less than 0";
+        assert end >= 0 : " End cannot be less than 0";
+
         if (start >= end) {
             return "";
         }

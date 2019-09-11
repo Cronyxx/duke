@@ -83,6 +83,9 @@ public class Storage implements DukeStorage {
     }
 
     private Task dataParser(String data) throws DukeCorruptedDataException, DukeWrongDateFormatException {
+
+        assert data != null : " Data is null";
+
         String[] arguments = data.split(" \\| ");
         boolean isDone;
         isDone = arguments[1].equals("1");

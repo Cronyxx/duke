@@ -82,6 +82,7 @@ public class TaskList implements MyList {
      */
     public TaskList findTasks(String word) {
         TaskList taskList = new TaskList();
+        
         for (Task task : list) {
             if (task.getDescription().contains(word)) {
                 taskList.add(task);
