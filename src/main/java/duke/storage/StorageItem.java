@@ -12,14 +12,16 @@ public class StorageItem {
 
     /**
      * Initialises a StorageItem using the type of the task, a boolean which states if the
-     * task is done and the description of the task.
+     * task is done and the description of the task with a datetime value of 0. 0 is used
+     * to indicate that the object is of type Todo.
      *
      * @param type Type of Task.
      * @param isDone Boolean that states whether the task is done.
      * @param description Description of the task.
+     * @param tags Tags of the task
      */
-    public StorageItem(String type, boolean isDone, String description) {
-        data = String.format("%s | %d | %s", type, isDone ? 1 : 0, description);
+    public StorageItem(String type, boolean isDone, String description, String tags) {
+        data = String.format("%s | %d | %s | 0 | %s", type, isDone ? 1 : 0, description, tags);
     }
 
     /**
@@ -31,9 +33,9 @@ public class StorageItem {
      * @param description Description of the task.
      * @param datetime Date object of the task.
      */
-    public StorageItem(String type, boolean isDone, String description, Date datetime) {
-        data = String.format("%s | %d | %s | %s", type, isDone ? 1 : 0, description,
-                Consts.DATE_TIME_FORMATTER.format(datetime));
+    public StorageItem(String type, boolean isDone, String description, Date datetime, String tags) {
+        data = String.format("%s | %d | %s | %s | %s", type, isDone ? 1 : 0, description,
+                Consts.DATE_TIME_FORMATTER.format(datetime), tags);
     }
 
     /**

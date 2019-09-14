@@ -2,8 +2,10 @@ package duke.task;
 
 import duke.constant.Consts;
 import duke.exception.DukeWrongDateFormatException;
+import duke.tag.Tag;
 
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Represents a deadline task in the application that extends the Task class.
@@ -36,8 +38,8 @@ public class DeadlineTask extends Task {
      * @param isDone Boolean representing the completion state of the task.
      * @throws DukeWrongDateFormatException Thrown when the String deadline is of the wrong format.
      */
-    public DeadlineTask(String description, String deadline, boolean isDone) throws DukeWrongDateFormatException {
-        super(description, isDone);
+    public DeadlineTask(String description, String deadline, boolean isDone, List<Tag> tagList) throws DukeWrongDateFormatException {
+        super(description, isDone, tagList);
         try {
             this.dateTime = Consts.DATE_TIME_FORMATTER.parse(deadline);
         } catch (ParseException e) {

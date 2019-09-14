@@ -3,6 +3,7 @@ package duke.storage;
 import duke.exception.DukeCorruptedDataException;
 import duke.exception.DukeMissingFileException;
 import duke.exception.DukeWrongDateFormatException;
+import duke.tag.Tag;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -14,6 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -47,9 +50,10 @@ public class Storage implements DukeStorage {
         for (Task task : taskList.getList()) {
             StorageItem si;
             if (task.getType().equals("T")) {
-                si = new StorageItem(task.getType(), task.getIsDone(), task.getDescription());
+                si = new StorageItem(task.getType(), task.getIsDone(), task.getDescription(), task.getTagNames());
             } else {
-                si = new StorageItem(task.getType(), task.getIsDone(), task.getDescription(), task.getDateTime());
+                si = new StorageItem(task.getType(), task.getIsDone(), task.getDescription(), task.getDateTime(),
+                        task.getTagNames());
             }
             fw.write(si.getData() + System.lineSeparator());
         }
@@ -87,16 +91,28 @@ public class Storage implements DukeStorage {
         assert data != null : " Data is null";
 
         String[] arguments = data.split(" \\| ");
+
         boolean isDone;
         isDone = arguments[1].equals("1");
 
+        List<Tag> tags = new ArrayList<>();
+
+        if (arguments.length == 5) {
+            String[] tagArray = arguments[4].split(" ");
+
+
+            for (String tagName : tagArray) {
+                tags.add(new Tag(tagName));
+            }
+        }
+
         switch (arguments[0]) {
         case "T":
-            return new TodoTask(arguments[2], isDone);
+            return new TodoTask(arguments[2], isDone, tags);
         case "D":
-            return new DeadlineTask(arguments[2], arguments[3], isDone);
+            return new DeadlineTask(arguments[2], arguments[3], isDone, tags);
         case "E":
-            return new EventTask((arguments[2]), arguments[3], isDone);
+            return new EventTask((arguments[2]), arguments[3], isDone, tags);
         default:
             throw new DukeCorruptedDataException();
         }

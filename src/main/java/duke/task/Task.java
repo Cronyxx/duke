@@ -1,6 +1,10 @@
 package duke.task;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import duke.tag.Tag;
 
 /**
  * Represents a task in the application. A task has four protected fields, the description
@@ -14,6 +18,7 @@ public abstract class Task {
     protected boolean isDone;
     protected String type;
     protected Date dateTime;
+    protected List<Tag> tagList;
 
     /**
      * Initialises a Task that has a default isDone field of false.
@@ -23,6 +28,8 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+
+        this.tagList = new ArrayList<>();
     }
 
     /**
@@ -31,9 +38,10 @@ public abstract class Task {
      * @param description Description of the task.
      * @param isDone Boolean that shows the state of completion of the task.
      */
-    public Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone, List<Tag> tagList) {
         this.description = description;
         this.isDone = isDone;
+        this.tagList = tagList;
     }
 
     /**
@@ -80,6 +88,7 @@ public abstract class Task {
 
     /**
      * Returns the datetime of the task.
+     *
      * @return Date object of the task.
      */
     public Date getDateTime() {
@@ -87,12 +96,43 @@ public abstract class Task {
     }
 
     /**
-     * Returns A string that includes the status icon and the description of the task.
+     * Returns a string that contains all the tag.
+     *
+     * @return String that contains all tag.
+     */
+    public String getTagNames() {
+        StringBuilder sb = new StringBuilder("");
+        for (Tag tag : tagList) {
+            sb.append(tag.getTagName()).append(" ");
+        }
+        return sb.toString();
+    }
+
+    public String getTags() {
+        StringBuilder sb = new StringBuilder("");
+        for (Tag tag : tagList) {
+            sb.append(tag).append(" ");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Adds a tag to the tagList.
+     *
+     * @param tagName String of the tagName to be added.
+     */
+    public void addTag(String tagName) {
+        tagList.add(new Tag(tagName));
+    }
+
+
+    /**
+     * Returns a string that includes the status icon and the description of the task.
      *
      * @return String with status icon and description of task.
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", getStatusIcon(), getDescription());
+        return String.format("[%s] %s\nTags: %s", getStatusIcon(), getDescription(), getTags());
     }
 }

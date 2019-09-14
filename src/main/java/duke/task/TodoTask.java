@@ -1,6 +1,9 @@
 package duke.task;
 
+import duke.tag.Tag;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Represents a todo task in the application that extends the Task class.
@@ -24,8 +27,8 @@ public class TodoTask extends Task {
      * @param description Description of the task.
      * @param isDone Boolean that shows the state of completion of the task.
      */
-    public TodoTask(String description, boolean isDone) {
-        super(description, isDone);
+    public TodoTask(String description, boolean isDone, List<Tag> tagsList) {
+        super(description, isDone, tagsList);
         this.type = "T";
         this.dateTime = new Date();
     }

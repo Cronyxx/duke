@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 
 /**
@@ -46,6 +47,7 @@ public class DialogBox extends HBox {
 
         displayPicture.setClip(new Circle(50, 50, 50));
         dialog.setPadding(new Insets(10, 10, 10, 10));
+        dialog.setMinHeight(Region.USE_PREF_SIZE);
     }
 
     /**

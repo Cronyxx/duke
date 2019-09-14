@@ -12,7 +12,7 @@ import java.util.List;
 public class UserInterface implements DukeUserInterface {
 
     /**
-     * Prints the introduction of the application.
+     * Returns the introduction message of the application.
      */
     public String getIntro() {
         return "Hello! I'm Duke!\n"
@@ -20,14 +20,14 @@ public class UserInterface implements DukeUserInterface {
     }
 
     /**
-     * Prints the exit message.
+     * Returns the exit message.
      */
     public String getExitMsg() {
         return "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Prints a message when a task is added.
+     * Returns a message when a task is added.
      *
      * @param task Task that was added.
      * @param taskList Task List where the Task is stored.
@@ -39,7 +39,7 @@ public class UserInterface implements DukeUserInterface {
     }
 
     /**
-     * Prints the list of tasks.
+     * Returns the list of tasks.
      *
      * @param myList List of tasks stored in the application.
      * @return String which represents the output text.
@@ -59,7 +59,7 @@ public class UserInterface implements DukeUserInterface {
     }
 
     /**
-     * Prints out the list of tasks that matches the String word from the Find command.
+     * Returns the message containing the list of tasks that matches the String word from the Find command.
      *
      * @param myList MyList of tasks which contains the String word from the Find command.
      * @return String which represents the output text.
@@ -79,7 +79,7 @@ public class UserInterface implements DukeUserInterface {
     }
 
     /**
-     * Prints out a message when a task is marked as done.
+     * Returns the message to be printed when a task is marked as done.
      *
      * @param task Task that was marked as done.
      * @return String which represents the output text.
@@ -99,7 +99,7 @@ public class UserInterface implements DukeUserInterface {
     }
 
     /**
-     * Prints out the message when a task is deleted.
+     * Returns the message to be printed when a task is deleted.
      *
      * @param task Task that was deleted.
      * @param taskList Task list that the Task was removed from.
@@ -108,5 +108,16 @@ public class UserInterface implements DukeUserInterface {
     public String getDeleteMsg(Task task, MyList taskList) {
         return String.format("Noted. I've removed this task:\n%s\nNow you have %d %s in the list.",
                 task, taskList.getNumTasks(), taskList.getNumTasks() == 1 ? "task" : "tasks");
+    }
+
+    /**
+     * Returns the message to be printed when a tag is added to a task.
+     *
+     * @param task Task which the tag is added to.
+     * @param tagName String name of the tag.
+     * @return String message to be printed.
+     */
+    public String getAddTagMsg(Task task, String tagName) {
+        return String.format("Noted. I've added the tag %s to the task: %s.", tagName, task.getDescription());
     }
 }

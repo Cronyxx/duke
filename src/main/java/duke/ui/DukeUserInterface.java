@@ -52,5 +52,20 @@ public interface DukeUserInterface {
      */
     public String getDeleteMsg(Task task, MyList taskList);
 
+    /**
+     * Returns the message containing the list of tasks that matches the String word from the Find command.
+     *
+     * @param resultList MyList of tasks which contains the String word from the Find command.
+     * @return String which represents the output text.
+     */
     public String getFindList(MyList resultList);
+
+    /**
+     * Returns the message to be printed when a tag is added to a task.
+     *
+     * @param task Task which the tag is added to.
+     * @param tagName String name of the tag.
+     * @return String message to be printed.
+     */
+    public String getAddTagMsg(Task task, String tagName);
 }

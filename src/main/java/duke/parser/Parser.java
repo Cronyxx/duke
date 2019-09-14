@@ -1,7 +1,8 @@
 package duke.parser;
 
-import duke.command.Command;
 import duke.command.AddCommand;
+import duke.command.AddTagCommand;
+import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.ExitCommand;
@@ -30,6 +31,7 @@ public class Parser {
      */
     public static Command parse(String input) throws DukeException {
         String[] arguments = input.split(" ");
+        int num;
 
         switch (arguments[0]) {
         case "bye":
@@ -39,8 +41,12 @@ public class Parser {
         case "done":
             //Fallthrough
         case "delete":
-            int num = parseInteger(arguments[0], arguments[1]);
-            return handleDoneAndDeleteCase(arguments[0], num);
+            num = parseInteger(arguments[0], arguments[1]);
+            return handleDoneDeleteCase(arguments[0], num);
+        case "tag":
+            num = parseInteger(arguments[0], arguments[1]);
+            String tagName = parseArrayToString(arguments, 2, arguments.length);
+            return handleTagCase(num, tagName);
         case "deadline":
             //Fallthrough
         case "event":
@@ -70,7 +76,7 @@ public class Parser {
         return new ListCommand();
     }
 
-    private static Command handleDoneAndDeleteCase(String command, int index) {
+    private static Command handleDoneDeleteCase(String command, int index) {
         if (command.equals("done")) {
             return new DoneCommand(index);
         } else if (command.equals("delete")) {
@@ -79,6 +85,10 @@ public class Parser {
             assert false : " done and delete command not found";
             return null;
         }
+    }
+
+    private static Command handleTagCase(int index, String tagName) {
+        return new AddTagCommand(index, tagName);
     }
 
     private static Command handleAddTaskCommands(String[] arguments) throws DukeEmptyDescriptionException,
@@ -102,11 +112,11 @@ public class Parser {
         }
 
         if (arguments[0].equals("todo")) {
-            String description = parseArguments(arguments, 1, arguments.length);
+            String description = parseArrayToString(arguments, 1, arguments.length);
             return new AddCommand(arguments[0], description, "00/00/0000 0000");
         } else {
-            String description = parseArguments(arguments, 1, index);
-            String dateTime = parseArguments(arguments, index + 1, arguments.length);
+            String description = parseArrayToString(arguments, 1, index);
+            String dateTime = parseArrayToString(arguments, index + 1, arguments.length);
             return new AddCommand(arguments[0], description, dateTime);
         }
     }
@@ -138,7 +148,7 @@ public class Parser {
     }
 
     // Combines words into a sentence
-    private static String parseArguments(String[] array, int start, int end) {
+    private static String parseArrayToString(String[] array, int start, int end) {
 
         assert array != null : " String array cannot be null";
         assert start >= 0 : " Start cannot be less than 0";
