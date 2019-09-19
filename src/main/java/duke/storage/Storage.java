@@ -35,7 +35,7 @@ public class Storage implements DukeStorage {
      */
     public Storage(String directory) {
         this.directory = directory;
-        this.filename = "duke.txt";
+        this.filename = "rooster.txt";
     }
 
     /**
@@ -46,7 +46,11 @@ public class Storage implements DukeStorage {
      */
     @Override
     public void updateList(MyList taskList) throws IOException {
-        FileWriter fw = new FileWriter(directory + filename, false);
+        File file = new File(directory + filename);
+        if (!file.exists()) {
+            file.getParentFile().mkdir();
+        }
+        FileWriter fw = new FileWriter(file, false);
         for (Task task : taskList.getList()) {
             StorageItem si;
             if (task.getType().equals("T")) {

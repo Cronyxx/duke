@@ -140,8 +140,7 @@ Example of usage:
 
 Expected outcome:
 
-`The task with the index of <index> would have a tag with a tag name of 
-<tagName> removed.`
+`The task with the index of <index> would have a tag with a tag name of <tagName> removed.`
 
 ### `bye` - Exits the application
 
